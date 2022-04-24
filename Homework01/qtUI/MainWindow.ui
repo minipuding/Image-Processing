@@ -38,7 +38,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <property name="iconSize">
        <size>
@@ -154,11 +154,20 @@
              </property>
              <layout class="QVBoxLayout" name="verticalLayout">
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="5,1">
+               <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,1">
                 <item>
                  <widget class="QSlider" name="slider_threshold">
                   <property name="enabled">
                    <bool>false</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Slider for setting threshold between 0 and 255.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>2000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Slider for setting threshold between 0 and 255.</string>
                   </property>
                   <property name="maximum">
                    <number>255</number>
@@ -176,6 +185,15 @@
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
+                  <property name="toolTip">
+                   <string>Text editor for setting threshold between 0 and 255.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1500</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Text editor for setting threshold between 0 and 255.</string>
+                  </property>
                   <property name="text">
                    <string>50</string>
                   </property>
@@ -190,6 +208,15 @@
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
+                  <property name="toolTip">
+                   <string>Apply otsu algorithm.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Apply otsu algorithm.</string>
+                  </property>
                   <property name="text">
                    <string>Otsu</string>
                   </property>
@@ -199,6 +226,15 @@
                  <widget class="QPushButton" name="pushbutton_entropy">
                   <property name="enabled">
                    <bool>false</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Apply entropy algorithm.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Apply entropy algorithm.</string>
                   </property>
                   <property name="text">
                    <string>Entropy</string>
@@ -274,7 +310,16 @@
                 <item>
                  <widget class="QPushButton" name="pushbutton_export">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Export result image.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Export result image.</string>
                   </property>
                   <property name="text">
                    <string>Export</string>
@@ -283,6 +328,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_sendto1">
+                  <property name="toolTip">
+                   <string>Send current result image to other page as source image.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>2000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Send current result image to other page as source image.</string>
+                  </property>
                   <property name="text">
                    <string>Send to...</string>
                   </property>
@@ -290,6 +344,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_reset">
+                  <property name="toolTip">
+                   <string>Reset to parameters and ui as begining.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1500</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Reset to parameters and ui as begining.</string>
+                  </property>
                   <property name="text">
                    <string>Reset</string>
                   </property>
@@ -297,6 +360,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_exit">
+                  <property name="toolTip">
+                   <string>Exit main window.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Exit main window.</string>
+                  </property>
                   <property name="text">
                    <string>Exit</string>
                   </property>
@@ -312,6 +384,15 @@
         </item>
         <item row="1" column="0">
          <widget class="QGraphicsView" name="graphics_view_source_image">
+          <property name="toolTip">
+           <string>Source image.</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>1000</number>
+          </property>
+          <property name="statusTip">
+           <string>Source image.</string>
+          </property>
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Source image&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
@@ -330,6 +411,15 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Histgram graphics</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>1000</number>
+          </property>
+          <property name="statusTip">
+           <string>Histgram graphics</string>
           </property>
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Histgram&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -362,6 +452,15 @@
         </item>
         <item row="0" column="2" rowspan="2">
          <widget class="QGraphicsView" name="graphics_view_binary_image">
+          <property name="toolTip">
+           <string>Threholded binary image.</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>1000</number>
+          </property>
+          <property name="statusTip">
+           <string>Threholded binary image.</string>
+          </property>
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Binary image generated by threshold segmentation, Otsu or max-Entropy methods.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
@@ -534,6 +633,15 @@
                      <bold>true</bold>
                     </font>
                    </property>
+                   <property name="toolTip">
+                    <string>Direction 01 of edge detecting operations.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Direction 01 of edge detecting operations.</string>
+                   </property>
                    <property name="text">
                     <string>Direc1</string>
                    </property>
@@ -552,6 +660,15 @@
                      <pointsize>12</pointsize>
                     </font>
                    </property>
+                   <property name="toolTip">
+                    <string>Direction 02 of edge detecting operations.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Direction 02 of edge detecting operations.</string>
+                   </property>
                    <property name="text">
                     <string>Direc2</string>
                    </property>
@@ -563,6 +680,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Amplitude of edge detecting operations.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Amplitude of edge detecting operations.</string>
                    </property>
                    <property name="text">
                     <string>Amp</string>
@@ -578,6 +704,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Filter types including three classical edge detection operations, three classical filters and one user definded filter.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>3000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Filter types including three classical edge detection operations, three classical filters and one user definded filter.</string>
                    </property>
                    <property name="currentIndex">
                     <number>0</number>
@@ -668,6 +803,15 @@
                      <pointsize>9</pointsize>
                     </font>
                    </property>
+                   <property name="toolTip">
+                    <string>Slider for setting sigma of guassian filter.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Slider for setting sigma of guassian filter.</string>
+                   </property>
                    <property name="minimum">
                     <number>1</number>
                    </property>
@@ -697,6 +841,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Text editor for setting sigma of guassian filter.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Text editor for setting sigma of guassian filter.</string>
                    </property>
                    <property name="text">
                     <string>1.2</string>
@@ -764,6 +917,15 @@
                      <pointsize>9</pointsize>
                     </font>
                    </property>
+                   <property name="toolTip">
+                    <string>Slider for setting filter size.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Slider for setting filter size.</string>
+                   </property>
                    <property name="minimum">
                     <number>0</number>
                    </property>
@@ -802,6 +964,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Text editor for setting filter size.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Text editor for setting filter size.</string>
                    </property>
                    <property name="text">
                     <string>3</string>
@@ -886,6 +1057,15 @@
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
+                  <property name="toolTip">
+                   <string>Export result image.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Export result image.</string>
+                  </property>
                   <property name="text">
                    <string>Export</string>
                   </property>
@@ -893,6 +1073,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_sendto2">
+                  <property name="toolTip">
+                   <string>Send current result image to other page as source image.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>2000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Send current result image to other page as source image.</string>
+                  </property>
                   <property name="text">
                    <string>Send to...</string>
                   </property>
@@ -900,6 +1089,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_reset2">
+                  <property name="toolTip">
+                   <string>Reset to parameters and ui as begining.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1500</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Reset to parameters and ui as begining.</string>
+                  </property>
                   <property name="text">
                    <string>Reset</string>
                   </property>
@@ -907,6 +1105,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_exit2">
+                  <property name="toolTip">
+                   <string>Exit main window.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Exit main window.</string>
+                  </property>
                   <property name="text">
                    <string>Exit</string>
                   </property>
@@ -922,6 +1129,15 @@
         </item>
         <item row="0" column="2" rowspan="2">
          <widget class="QGraphicsView" name="graphics_view_filters_image">
+          <property name="toolTip">
+           <string>Filtered image.</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>1000</number>
+          </property>
+          <property name="statusTip">
+           <string>Filtered image.</string>
+          </property>
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Binary image generated by threshold segmentation, Otsu or max-Entropy methods.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
@@ -932,6 +1148,15 @@
         </item>
         <item row="1" column="0">
          <widget class="QGraphicsView" name="graphics_view_source_image2">
+          <property name="toolTip">
+           <string>Source image.</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>1000</number>
+          </property>
+          <property name="statusTip">
+           <string>Source image.</string>
+          </property>
           <property name="frameShape">
            <enum>QFrame::Box</enum>
           </property>
@@ -984,6 +1209,15 @@
                <weight>75</weight>
                <bold>true</bold>
               </font>
+             </property>
+             <property name="toolTip">
+              <string>Kernel of filter or operator.</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>1000</number>
+             </property>
+             <property name="statusTip">
+              <string>Kernel of filter or operator.</string>
              </property>
              <property name="frameShape">
               <enum>QFrame::Box</enum>
@@ -1168,6 +1402,15 @@
                  </property>
                  <item row="0" column="0">
                   <widget class="QComboBox" name="combobox_morph_oper">
+                   <property name="toolTip">
+                    <string>Morphological operations including dilation, erosion, opening and closing.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>2000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Morphological operations including dilation, erosion, opening and closing.</string>
+                   </property>
                    <item>
                     <property name="text">
                      <string>Dilation</string>
@@ -1192,6 +1435,15 @@
                  </item>
                  <item row="0" column="1">
                   <widget class="QCheckBox" name="checkbox_show_diff">
+                   <property name="toolTip">
+                    <string>Show difference between source image and result image.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>2000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Show difference between source image and result image.</string>
+                   </property>
                    <property name="text">
                     <string>Show Diff</string>
                    </property>
@@ -1203,6 +1455,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Structure element types including rectangle, cross, ellipse and user-definded.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>3000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Structure element types including rectangle, cross, ellipse and user-definded.</string>
                    </property>
                    <property name="currentText">
                     <string>Rect SE</string>
@@ -1234,6 +1495,12 @@
                  </item>
                  <item row="1" column="1">
                   <widget class="QCheckBox" name="checkbox_se_regular">
+                   <property name="toolTip">
+                    <string extracomment="3000">If checked 'regular', the width and height of structure element would be the same.</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>If checked 'regular', the width and height of structure element would be the same.</string>
+                   </property>
                    <property name="text">
                     <string>Regular</string>
                    </property>
@@ -1304,6 +1571,15 @@
                      <pointsize>9</pointsize>
                     </font>
                    </property>
+                   <property name="toolTip">
+                    <string>Slider for setting structure element width.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>2000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Slider for setting structure element width.</string>
+                   </property>
                    <property name="minimum">
                     <number>0</number>
                    </property>
@@ -1342,6 +1618,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Text editor for setting structure element width.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Text editor for setting structure element width.</string>
                    </property>
                    <property name="text">
                     <string>5</string>
@@ -1403,6 +1688,15 @@
                      <pointsize>9</pointsize>
                     </font>
                    </property>
+                   <property name="toolTip">
+                    <string>Slider for setting structure element height.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>2000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Slider for setting structure element height.</string>
+                   </property>
                    <property name="minimum">
                     <number>0</number>
                    </property>
@@ -1432,6 +1726,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Text editor for setting structure element height.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Text editor for setting structure element height.</string>
                    </property>
                    <property name="text">
                     <string>5</string>
@@ -1516,6 +1819,15 @@
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
+                  <property name="toolTip">
+                   <string>Export result image.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Export result image.</string>
+                  </property>
                   <property name="text">
                    <string>Export</string>
                   </property>
@@ -1523,6 +1835,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_sendto3">
+                  <property name="toolTip">
+                   <string>Send current result image to other page as source image.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>2000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Send current result image to other page as source image.</string>
+                  </property>
                   <property name="text">
                    <string>Send to...</string>
                   </property>
@@ -1530,6 +1851,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_reset3">
+                  <property name="toolTip">
+                   <string>Reset to parameters and ui as begining.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1500</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Reset to parameters and ui as begining.</string>
+                  </property>
                   <property name="text">
                    <string>Reset</string>
                   </property>
@@ -1537,6 +1867,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_exit3">
+                  <property name="toolTip">
+                   <string>Exit main window.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Exit main window.</string>
+                  </property>
                   <property name="text">
                    <string>Exit</string>
                   </property>
@@ -1552,6 +1891,15 @@
         </item>
         <item row="0" column="2" rowspan="2">
          <widget class="QGraphicsView" name="graphics_view_morph_oper_image">
+          <property name="toolTip">
+           <string>Result image after morphological operation processing.</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>1500</number>
+          </property>
+          <property name="statusTip">
+           <string>Result image after morphological operation processing.</string>
+          </property>
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Binary image generated by threshold segmentation, Otsu or max-Entropy methods.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
@@ -1561,7 +1909,17 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QGraphicsView" name="graphics_view_source_image3"/>
+         <widget class="QGraphicsView" name="graphics_view_source_image3">
+          <property name="toolTip">
+           <string>Source image.</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>1000</number>
+          </property>
+          <property name="statusTip">
+           <string>Source image.</string>
+          </property>
+         </widget>
         </item>
         <item row="1" column="1">
          <widget class="QFrame" name="frame_5">
@@ -1602,6 +1960,15 @@
               <font>
                <pointsize>9</pointsize>
               </font>
+             </property>
+             <property name="toolTip">
+              <string>Set origin of structure element.</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>1000</number>
+             </property>
+             <property name="statusTip">
+              <string>Set origin of structure element.</string>
              </property>
              <property name="text">
               <string>Set Origin</string>
@@ -1644,6 +2011,15 @@
                <pointsize>9</pointsize>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Cancel setting origin of structure element.</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>1000</number>
+             </property>
+             <property name="statusTip">
+              <string>Cancel setting origin of structure element.</string>
+             </property>
              <property name="text">
               <string>Cencel</string>
              </property>
@@ -1659,6 +2035,15 @@
                <weight>75</weight>
                <bold>true</bold>
               </font>
+             </property>
+             <property name="toolTip">
+              <string>Structure element.</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>1000</number>
+             </property>
+             <property name="statusTip">
+              <string>Structure element.</string>
              </property>
              <property name="frameShape">
               <enum>QFrame::Box</enum>
@@ -1689,6 +2074,15 @@
        <layout class="QGridLayout" name="gridLayout_9" rowstretch="1,1" columnstretch="2,3,4">
         <item row="0" column="2" rowspan="2">
          <widget class="QGraphicsView" name="graphics_view_morph_funs_image">
+          <property name="toolTip">
+           <string>Result image after morphological functions processing.</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>2000</number>
+          </property>
+          <property name="statusTip">
+           <string>Result image after morphological functions processing.</string>
+          </property>
           <property name="whatsThis">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Binary image generated by threshold segmentation, Otsu or max-Entropy methods.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
@@ -1698,7 +2092,17 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QGraphicsView" name="graphics_view_source_image4"/>
+         <widget class="QGraphicsView" name="graphics_view_source_image4">
+          <property name="toolTip">
+           <string>Source image.</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>1000</number>
+          </property>
+          <property name="statusTip">
+           <string>Source image.</string>
+          </property>
+         </widget>
         </item>
         <item row="1" column="1">
          <widget class="QFrame" name="frame_6">
@@ -1749,7 +2153,10 @@
               <string>A marker. Only used in condiational dilation of binary image.</string>
              </property>
              <property name="toolTipDuration">
-              <number>4000</number>
+              <number>2000</number>
+             </property>
+             <property name="statusTip">
+              <string>A marker. Only used in condiational dilation of binary image.</string>
              </property>
             </widget>
            </item>
@@ -1775,6 +2182,15 @@
               <font>
                <pointsize>9</pointsize>
               </font>
+             </property>
+             <property name="toolTip">
+              <string>Choose marker shape.</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>1000</number>
+             </property>
+             <property name="statusTip">
+              <string>Choose marker shape.</string>
              </property>
              <item>
               <property name="text">
@@ -1803,6 +2219,15 @@
                <pointsize>9</pointsize>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Set marker position on source image.</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>1500</number>
+             </property>
+             <property name="statusTip">
+              <string>Set marker position on source image.</string>
+             </property>
              <property name="text">
               <string>Set Marker</string>
              </property>
@@ -1817,6 +2242,15 @@
               <font>
                <pointsize>9</pointsize>
               </font>
+             </property>
+             <property name="toolTip">
+              <string>Cancel setting marker position on source image.</string>
+             </property>
+             <property name="toolTipDuration">
+              <number>1500</number>
+             </property>
+             <property name="statusTip">
+              <string>Cancel setting marker position on source image.</string>
              </property>
              <property name="text">
               <string>Cencel</string>
@@ -1936,6 +2370,15 @@
                    <property name="enabled">
                     <bool>false</bool>
                    </property>
+                   <property name="toolTip">
+                    <string>Show animation.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Show animation.</string>
+                   </property>
                    <property name="text">
                     <string>Animation</string>
                    </property>
@@ -1943,6 +2386,15 @@
                  </item>
                  <item row="2" column="0">
                   <widget class="QRadioButton" name="radiobutton_skeleton_reconstruction">
+                   <property name="toolTip">
+                    <string>Apply skeleton reconstrution.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Apply skeleton reconstrution.</string>
+                   </property>
                    <property name="text">
                     <string>Skeleton Recon</string>
                    </property>
@@ -1953,6 +2405,15 @@
                  </item>
                  <item row="0" column="0">
                   <widget class="QRadioButton" name="radiobutton_distance_transfrom">
+                   <property name="toolTip">
+                    <string>Apply distance transform.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Apply distance transform.</string>
+                   </property>
                    <property name="text">
                     <string>Distance Trans</string>
                    </property>
@@ -1966,6 +2427,15 @@
                  </item>
                  <item row="1" column="0">
                   <widget class="QRadioButton" name="radiobutton_skeleton">
+                   <property name="toolTip">
+                    <string>Apply skeleton extraction.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Apply skeleton extraction.</string>
+                   </property>
                    <property name="text">
                     <string>Skeleton</string>
                    </property>
@@ -1983,6 +2453,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Choose distance calculating mathods.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Choose distance calculating mathods.</string>
                    </property>
                    <property name="currentText">
                     <string>Chess Board</string>
@@ -2051,6 +2530,15 @@
                      <pointsize>12</pointsize>
                     </font>
                    </property>
+                   <property name="toolTip">
+                    <string>Choose morphological reconstruction type.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Choose morphological reconstruction type.</string>
+                   </property>
                    <property name="currentText">
                     <string>Con-Dilation (WB)</string>
                    </property>
@@ -2076,6 +2564,15 @@
                  </item>
                  <item row="0" column="0">
                   <widget class="QRadioButton" name="radiobutton_edge_detection">
+                   <property name="toolTip">
+                    <string>Apply edge detection by morphological operations.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Apply edge detection by morphological operations.</string>
+                   </property>
                    <property name="text">
                     <string>Edge Detect</string>
                    </property>
@@ -2093,6 +2590,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Choose edge detection type.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Choose edge detection type.</string>
                    </property>
                    <property name="currentText">
                     <string>Standard</string>
@@ -2119,6 +2625,15 @@
                  </item>
                  <item row="1" column="0">
                   <widget class="QRadioButton" name="radiobutton_morph_reconstruction">
+                   <property name="toolTip">
+                    <string>Apply morphological reconstruction. If souece image is binary image, conditional dilation would be applied.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>3000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Apply morphological reconstruction. If souece image is binary image, conditional dilation would be applied.</string>
+                   </property>
                    <property name="text">
                     <string>Morph Recon</string>
                    </property>
@@ -2136,6 +2651,15 @@
                     <font>
                      <pointsize>12</pointsize>
                     </font>
+                   </property>
+                   <property name="toolTip">
+                    <string>Choose gradient calculating type.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1000</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Choose gradient calculating type.</string>
                    </property>
                    <property name="currentText">
                     <string>External Gradient</string>
@@ -2157,6 +2681,15 @@
                  </item>
                  <item row="2" column="0">
                   <widget class="QRadioButton" name="radiobutton_gradient">
+                   <property name="toolTip">
+                    <string>Apply gradient calculation by morphlogical operations.</string>
+                   </property>
+                   <property name="toolTipDuration">
+                    <number>1500</number>
+                   </property>
+                   <property name="statusTip">
+                    <string>Apply gradient calculation by morphlogical operations.</string>
+                   </property>
                    <property name="text">
                     <string>Gradient</string>
                    </property>
@@ -2237,6 +2770,15 @@
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
+                  <property name="toolTip">
+                   <string>Export result image.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Export result image.</string>
+                  </property>
                   <property name="text">
                    <string>Export</string>
                   </property>
@@ -2244,6 +2786,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_sendto4">
+                  <property name="toolTip">
+                   <string>Send current result image to other page as source image.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>2000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Send current result image to other page as source image.</string>
+                  </property>
                   <property name="text">
                    <string>Send to...</string>
                   </property>
@@ -2251,6 +2802,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_reset4">
+                  <property name="toolTip">
+                   <string>Reset to parameters and ui as begining.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1500</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Reset to parameters and ui as begining.</string>
+                  </property>
                   <property name="text">
                    <string>Reset</string>
                   </property>

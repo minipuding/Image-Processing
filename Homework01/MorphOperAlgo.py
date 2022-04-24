@@ -74,8 +74,8 @@ def mine_Dilation(source_image, structure_element, origin = (-1,-1)):
         x_offset = int((structure_element.shape[0] - 1) / 2)
         y_offset = int((structure_element.shape[1] - 1) / 2)
     else:
-        x_offset = origin[0]
-        y_offset = origin[1]
+        x_offset = origin[1] # x是横向
+        y_offset = origin[0] # y是纵向
     X = np.array(np.where(structure_element==1)[0]) - x_offset
     Y = np.array(np.where(structure_element==1)[1]) - y_offset
     for x,y in zip(list(X), list(Y)):

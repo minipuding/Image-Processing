@@ -282,11 +282,14 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         if self.tabWidget.currentIndex() == 0:
             self._set_threshold_in_ui(Config.DEFAULT_THRESHOLD)
         elif self.tabWidget.currentIndex() == 1:
+            # set parameters and set ui
             self.filter_size = int((Config.DEFAULT_FILTER_SIZE - 1) / 2)
-            self.gaussian_sigma = Config.DEFAULT_GAUSSIAN_SIGMA
             self.slider_filter_size.setValue(self.filter_size)
-            self.slider_gaussian_sigma.setValue(self.gaussian_sigma)
+            self.gaussian_sigma = Config.DEFAULT_GAUSSIAN_SIGMA
+            self.slider_gaussian_sigma.setValue(int(self.gaussian_sigma * 10))
             self.combobox_filters.setCurrentIndex(0)
+            self.radiobutton_direct01.setChecked(True)
+            print(self.gaussian_sigma)
         elif self.tabWidget.currentIndex() == 2:
             self.morph_oper_se_width = Config.DEFAULT_SE_WIDTH
             self.morph_oper_se_height = Config.DEFAULT_SE_HEIGHT
