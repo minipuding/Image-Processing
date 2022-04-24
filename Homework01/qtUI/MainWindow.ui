@@ -25,11 +25,20 @@
         <pointsize>9</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="toolTipDuration">
+       <number>1000</number>
+      </property>
+      <property name="statusTip">
+       <string/>
+      </property>
       <property name="tabShape">
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -96,6 +105,15 @@
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Input image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Input image path.</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -103,6 +121,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_input_path_browser">
+                  <property name="toolTip">
+                   <string>Choose input image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Choose Input image path.</string>
+                  </property>
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -207,6 +234,15 @@
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Export image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Export image path.</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -215,7 +251,16 @@
                 <item>
                  <widget class="QPushButton" name="pushbutton_export_path_browser">
                   <property name="enabled">
-                   <bool>false</bool>
+                   <bool>true</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Choose export image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Choose export image path.</string>
                   </property>
                   <property name="text">
                    <string>...</string>
@@ -229,7 +274,7 @@
                 <item>
                  <widget class="QPushButton" name="pushbutton_export">
                   <property name="enabled">
-                   <bool>false</bool>
+                   <bool>true</bool>
                   </property>
                   <property name="text">
                    <string>Export</string>
@@ -380,6 +425,15 @@
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Input image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Input image path.</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -387,6 +441,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_input_path_browser2">
+                  <property name="toolTip">
+                   <string>Choose Input image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Choose Input image path.</string>
+                  </property>
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -781,6 +844,15 @@
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Export image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Export image path.</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -790,6 +862,15 @@
                  <widget class="QPushButton" name="pushbutton_export_path_browser2">
                   <property name="enabled">
                    <bool>true</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Choose export image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Choose export image path.</string>
                   </property>
                   <property name="text">
                    <string>...</string>
@@ -1010,6 +1091,15 @@
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Input image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Input image path.</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -1017,6 +1107,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_input_path_browser3">
+                  <property name="toolTip">
+                   <string>Choose Input image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Choose Input image path.</string>
+                  </property>
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -1375,6 +1474,15 @@
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Export image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Export image path.</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -1384,6 +1492,15 @@
                  <widget class="QPushButton" name="pushbutton_export_path_browser3">
                   <property name="enabled">
                    <bool>true</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Choose export image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Choose export image path.</string>
                   </property>
                   <property name="text">
                    <string>...</string>
@@ -1650,7 +1767,7 @@
             </spacer>
            </item>
            <item row="1" column="2">
-            <widget class="QComboBox" name="comboBox">
+            <widget class="QComboBox" name="combobox_marker_shape">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -1677,7 +1794,7 @@
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QPushButton" name="pushbutton_set_origin_2">
+            <widget class="QPushButton" name="pushbutton_set_marker">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -1692,7 +1809,7 @@
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QPushButton" name="pushbutton_cancel_set_origin_2">
+            <widget class="QPushButton" name="pushbutton_cancel_set_marker">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -1742,6 +1859,15 @@
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Input image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Input image path.</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -1749,6 +1875,15 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushbutton_input_path_browser4">
+                  <property name="toolTip">
+                   <string>Choose Input image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Choose Input image path.</string>
+                  </property>
                   <property name="text">
                    <string>...</string>
                   </property>
@@ -2060,6 +2195,15 @@
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Export image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Export image path.</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -2069,6 +2213,15 @@
                  <widget class="QPushButton" name="pushbutton_export_path_browser4">
                   <property name="enabled">
                    <bool>true</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Choose export image path.</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>1000</number>
+                  </property>
+                  <property name="statusTip">
+                   <string>Choose export image path.</string>
                   </property>
                   <property name="text">
                    <string>...</string>

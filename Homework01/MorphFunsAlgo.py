@@ -35,7 +35,7 @@ def DistanceTrans(source_image, mode = 'CHESSBOARD'):
     distance_trans_image = np.uint8(distance_trans_image / (np.max(distance_trans_image[:]) - np.min(distance_trans_image[:])) * 255)
     return distance_trans_image
 
-def Skeleton(source_image, mode = 'CITYBLOCK'):
+def Skeleton(source_image, mode = 'CITYBLOCK', is_show_animation = False):
     temp_souece_image = np.copy(source_image)
     temp_souece_image[temp_souece_image[:] > 0] = 1
     skeleton_image = np.zeros(temp_souece_image.shape)
@@ -46,6 +46,12 @@ def Skeleton(source_image, mode = 'CITYBLOCK'):
             temp_souece_image = MorphOperAlgo.cv_Erosion(temp_souece_image, structure_element)
             skeleton_image = np.logical_or(skeleton_image,temp_souece_image - MorphOperAlgo.cv_Open(temp_souece_image, structure_element))
             SiF += [np.where(temp_souece_image > 0)]
+            if is_show_animation == True:
+                skeleton_image = np.uint8(skeleton_image)
+                skeleton_image = np.uint8(
+                    skeleton_image / (np.max(skeleton_image[:]) - np.min(skeleton_image[:])) * 255)
+                cv.imshow('Animation', skeleton_image)
+                cv.waitKey(Config.ANIMATION_INTER_TIME)
     else:
         temp_count = 0
         while temp_souece_image.any() != 0:
@@ -53,11 +59,17 @@ def Skeleton(source_image, mode = 'CITYBLOCK'):
             skeleton_image =np.logical_or(skeleton_image,temp_souece_image - MorphOperAlgo.cv_Open(temp_souece_image, structure_element[int(temp_count % 2)]))
             SiF += [np.where(temp_souece_image > 0)]
             temp_count += 1
+            if is_show_animation == True:
+                skeleton_image = np.uint8(skeleton_image)
+                skeleton_image = np.uint8(
+                    skeleton_image / (np.max(skeleton_image[:]) - np.min(skeleton_image[:])) * 255)
+                cv.imshow('Animation', skeleton_image)
+                cv.waitKey(Config.ANIMATION_INTER_TIME)
     skeleton_image = np.uint8(skeleton_image)
     skeleton_image = np.uint8(skeleton_image / (np.max(skeleton_image[:]) - np.min(skeleton_image[:])) * 255)
     return skeleton_image, SiF
 
-def SkeletonReconstrctution(SiF, image_shape, mode = 'CITYBLOCK'):
+def SkeletonReconstrctution(SiF, image_shape, mode = 'CITYBLOCK', is_show_animation = False):
     recons_image = np.zeros(image_shape)
     structure_element = Config.DISTANCE_TRANS_MODE[mode]
     if mode is not 'EUCLIDEAN':
@@ -65,6 +77,11 @@ def SkeletonReconstrctution(SiF, image_shape, mode = 'CITYBLOCK'):
             temp_image = np.zeros(image_shape)
             temp_image[sif] = 1
             recons_image = np.logical_or(recons_image, MorphOperAlgo.cv_Dilation(temp_image, structure_element))
+            if is_show_animation == True:
+                recons_image = np.uint8(recons_image)
+                recons_image = np.uint8(recons_image / (np.max(recons_image[:]) - np.min(recons_image[:])) * 255)
+                cv.imshow('Animation', recons_image)
+                cv.waitKey(Config.ANIMATION_INTER_TIME)
     else:
         temp_count = 0
         for sif in SiF:
@@ -72,6 +89,11 @@ def SkeletonReconstrctution(SiF, image_shape, mode = 'CITYBLOCK'):
             temp_image[sif] = 1
             recons_image = np.logical_or(recons_image, MorphOperAlgo.cv_Dilation(temp_image, structure_element[int(temp_count % 2)]))
             temp_count += 1
+            if is_show_animation == True:
+                recons_image = np.uint8(recons_image)
+                recons_image = np.uint8(recons_image / (np.max(recons_image[:]) - np.min(recons_image[:])) * 255)
+                cv.imshow('Animation', recons_image)
+                cv.waitKey(Config.ANIMATION_INTER_TIME)
     recons_image = np.uint8(recons_image)
     recons_image = np.uint8(recons_image / (np.max(recons_image[:]) - np.min(recons_image[:])) * 255)
     return recons_image
@@ -87,7 +109,7 @@ def EdgeDetection(source_image, structure_element = Config.BASIC_SE['MORPH_SQUAR
         edge_image = source_image - MorphOperAlgo.mine_Erosion(source_image, structure_element)
     return edge_image
 
-def ConditionalDilation(mask, marker, mode = 'MORPH_CROSS'):
+def ConditionalDilation(mask, marker, mode = 'MORPH_CROSS', is_show_animation = False):
     con_dilation_image = np.zeros(mask.shape)
     element_struction = Config.BASIC_SE[mode]
     count = 0
@@ -96,8 +118,9 @@ def ConditionalDilation(mask, marker, mode = 'MORPH_CROSS'):
         if (con_dilation_image == np.array(marker, dtype='bool')).all() == True:
             break
         marker = np.uint8(con_dilation_image * 255)
-        # cv.imshow('test', marker)
-        # cv.waitKey(1)
+        if is_show_animation == True:
+            cv.imshow('Animation', marker)
+            cv.waitKey(Config.ANIMATION_INTER_TIME)
     return np.uint8(con_dilation_image * 255)
 
 #######################
@@ -113,8 +136,41 @@ def Gradient(source_image, structure_element=Config.BASIC_SE['MORPH_SQUARE'], mo
     return gradient_image
 
 
+def OCBR(source_image, se_size = 10, mode = 'OBR', is_show_animation = False):
+    structure_element = Utils.generateDiskSE(se_size)
+    if mode == 'OBR':
+        marker = cv.erode(source_image, structure_element)
+        marker = cv.dilate(marker, structure_element)
+    elif mode == 'CBR':
+        marker = cv.dilate(source_image, structure_element)
+        marker = cv.erode(marker, structure_element)
+    ocbr_image = GrayscaleReconstruction(source_image, marker, mode, is_show_animation=is_show_animation)
+    return ocbr_image
+
+
+def GrayscaleReconstruction(source_image, marker,
+                            mode = 'OBR',
+                            structure_element = Config.BASIC_SE['MORPH_SQUARE'],
+                            is_show_animation = False):
+    while 1:
+        if mode == 'OBR':
+            temp_marker = cv.dilate(marker, structure_element)
+            temp_marker = np.minimum(source_image, temp_marker)
+        elif mode == 'CBR':
+            temp_marker = cv.erode(marker, structure_element)
+            temp_marker = np.maximum(source_image, temp_marker)
+        if (temp_marker == marker).all() == True:
+            break
+        marker = temp_marker
+
+        # show animation
+        if is_show_animation == True:
+            cv.imshow('Animation', marker)
+            cv.waitKey(Config.ANIMATION_INTER_TIME)
+    return marker
+
 if __name__ == '__main__':
-    file_path = ".\\images\\circles2.png"
+    file_path = ".\\images\\US.png"
     source_image,_ = Utils.LoadImage(file_path)
     # source_image = np.uint8(np.ones((200,300)) * 255)
     # source_image = np.pad(source_image, ((100,100),(100,100)))
@@ -136,9 +192,12 @@ if __name__ == '__main__':
     # edge_image = EdgeDetection(source_image, Config.BASIC_SE['MORPH_SQUARE'], mode='INTERNAL')
 
     # Conditional Dilation
-    mask = np.zeros(source_image.shape)
-    mask[120, 128] = 255
-    con_dilation_image = ConditionalDilation(source_image, mask)
+    # mask = np.zeros(source_image.shape)
+    # mask[120, 128] = 255
+    # con_dilation_image = ConditionalDilation(source_image, mask)
 
-    cv.imshow('test', con_dilation_image)
+    # OBR & CBR
+    cbr_image = OCBR(source_image, 10)
+
+    cv.imshow('test', cbr_image)
     cv.waitKey(0)

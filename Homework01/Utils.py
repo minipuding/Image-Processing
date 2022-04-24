@@ -18,10 +18,7 @@ def LoadImage(file_path):
     """
     # source_image = cv.imread(file_path, flags=0)
     source_image = cv.imdecode(np.fromfile(file_path,dtype=np.uint8), 0)
-    if  np.logical_and(source_image < 255, source_image > 0).any():
-        image_type = 'GRAY'
-    else:
-        image_type = 'BW'
+    image_type = ImageType(source_image)
     return source_image, image_type
 
 def SaveImage(result_image, file_path):
@@ -32,6 +29,12 @@ def SaveImage(result_image, file_path):
     except:
         return False
 
+def ImageType(source_image):
+    if  np.logical_and(source_image < 255, source_image > 0).any():
+        image_type = 'GRAY'
+    else:
+        image_type = 'BW'
+    return image_type
 #######################
 # Display Functions
 #######################
@@ -88,3 +91,19 @@ def show_on_chartview(data_list, thres, isInit = 'y'):
     qchart_histgram.setAxisY(y_axis, qbar_series_histgram)
     x_axis.setRange(0, 255)  # This code must be put after axis setting
     return qchart_histgram
+
+#######################
+# Morph Functions
+#######################
+def generateDiskSE(se_size):
+    structure_element = np.uint8(np.zeros((2*se_size+1, 2*se_size+1)))
+    structure_element[se_size, se_size] = 255
+    for index in range(se_size):
+        if index % 2 == 0:
+            basic_se = Config.BASIC_SE['MORPH_SQUARE']
+            structure_element = cv.dilate(structure_element, basic_se)
+        else:
+            basic_se = Config.BASIC_SE['MORPH_CROSS']
+            structure_element = cv.dilate(structure_element, basic_se)
+    # print(np.uint8(structure_element / 255))
+    return np.uint8(structure_element / 255)

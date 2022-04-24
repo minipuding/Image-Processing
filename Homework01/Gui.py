@@ -60,10 +60,8 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         # morph functions related
         self.morph_funs_source_image = None
         self.morph_funs_image = None
-        self.morph_funs_marker = Config.DEFAULT_IMAGE
         self.qitem_morph_funs_source_image = None
         self.qitem_morph_funs_image = None
-        self.qitem_morph_funs_marker = None
         self.morph_funs_SiF = []
         self.morph_funs_gray_flags = [4,5]
         self.morph_funs_bw_flags = [0,1,2,3,4]
@@ -75,7 +73,9 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
                                  # 5: gradient
         self.distance_trans_mode = Config.DEFAULT_DISTANCE_TRANS_MODE
         self.morph_funs_edge_detection_mode = Config.DEFAULT_EDGE_DETECTION_MODE
+        self.morph_funs_ocbr_mode = Config.DEFAULT_OCBR_MODE
         self.morph_funs_gradient_mode = Config.DEFAULT_GRADIENT_MODE
+        self.morph_funs_is_show_animation = False
 
         self.is_seperate_between_tabs = True
 
@@ -133,6 +133,7 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         # Morph Funstion Tab
         self.pushbutton_input_path_browser4.released.connect(self.slot_pushbutton_choose_image_path)
         self.combobox_distance_trans_mode.currentIndexChanged.connect(self.slot_combobox_distance_trans_mode)
+        self.checkbox_animation.toggled.connect(self.slot_checkbox_animation)
         self.radiobutton_distance_transfrom.clicked.connect(self.slot_radiobutton_distance_trans)
         self.radiobutton_skeleton.clicked.connect(self.slot_radiobutton_skeleton)
         self.radiobutton_skeleton_reconstruction.clicked.connect(self.slot_radiobutton_skeleton_reconstruction)
@@ -140,7 +141,12 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self.radiobutton_morph_reconstruction.clicked.connect(self.slot_radiobutton_morph_reconstruction)
         self.radiobutton_gradient.clicked.connect(self.slot_radiobutton_gradient)
         self.combobox_edge_detection.currentIndexChanged.connect(self.slot_combobox_edge_detection)
+        self.combobox_morph_reconstrction.currentIndexChanged.connect(self.slot_combobox_morph_reconstrction)
         self.combobox_gradient.currentIndexChanged.connect(self.slot_combobox_gradient)
+        self.combobox_marker_shape.currentIndexChanged.connect(self.slot_combobox_marker_shape)
+        self.pushbutton_set_marker.released.connect(self.slot_pushbutton_set_marker)
+        self.pushbutton_cancel_set_marker.released.connect(self.slot_pushbutton_cancel_set_marker)
+        self.graphics_view_marker.pressed_signal.connect(self.slot_morph_funs_pressed_signal)
 
         self.pushbutton_export_path_browser4.released.connect(self.slot_pushbutton_choose_export_path)
         self.pushbutton_reset4.released.connect(self.slot_pushbutton_reset)
@@ -247,7 +253,6 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
 
     def slot_pushbutton_send_to(self):
         self.send_to_window = SendToWindow()
-        # print(self.send_to_window.exec() == qw.QDialog.Rejected)
         if self.send_to_window.exec() == qw.QDialog.Accepted:
             temp_tabwidget_current_index = self.tabWidget.currentIndex()
             self.tabWidget.setCurrentIndex(self.send_to_window.selected_tab)
@@ -266,6 +271,7 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
                 self._init_morph_oper_ui()
             elif self.send_to_window.selected_tab == 3:
                 self.morph_funs_source_image = temp_source_images_list[3]
+                self.image_type = Utils.ImageType(self.morph_funs_source_image)
                 self._init_morph_funs_ui()
 
     def slot_pushbutton_reset(self):
@@ -298,7 +304,34 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
             self.combobox_morph_oper.setCurrentIndex(0)
             self.combobox_se.setCurrentIndex(0)
         elif self.tabWidget.currentIndex() == 3:
-            pass
+            # reset parameters
+            self.morph_funs_SiF = []
+            self.morph_funs_flag = 0  # 0: distance transform
+                                      # 1: skeleton
+                                      # 2: skeleton reconstruction
+                                      # 3: edge detection
+                                      # 4: morph reconstruction
+                                      # 5: gradient
+            self.distance_trans_mode = Config.DEFAULT_DISTANCE_TRANS_MODE
+            self.morph_funs_edge_detection_mode = Config.DEFAULT_EDGE_DETECTION_MODE
+            self.morph_funs_ocbr_mode = Config.DEFAULT_OCBR_MODE
+            self.morph_funs_gradient_mode = Config.DEFAULT_GRADIENT_MODE
+            self.morph_funs_is_show_animation = False
+            # reset ui
+            self.combobox_distance_trans_mode.setCurrentIndex(0)
+            self.checkbox_animation.setChecked(False)
+            self.combobox_edge_detection.setCurrentIndex(0)
+            self.combobox_morph_reconstrction.setCurrentIndex(0)
+            self.combobox_gradient.setCurrentIndex(0)
+            self.combobox_marker_shape.setCurrentIndex(0)
+            # reset widget enable
+            if self.image_type == 'BW':
+                self._set_morph_funs_default_marker()
+                self.radiobutton_distance_transfrom.setChecked(True)
+                self.slot_radiobutton_distance_trans()
+            elif self.image_type == 'GRAY':
+                self.radiobutton_morph_reconstruction.setChecked(True)
+                self.slot_radiobutton_morph_reconstruction()
 
     def slot_pushbutton_exit(self):
         """
@@ -607,14 +640,6 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
     # Morph Functions Slot Functions
     #######################
     # region
-    def slot_combobox_distance_trans_mode(self):
-        if self.combobox_distance_trans_mode.currentIndex() == 0:
-            self.distance_trans_mode = 'CHESSBOARD'
-        elif self.combobox_distance_trans_mode.currentIndex() == 1:
-            self.distance_trans_mode = 'CITYBLOCK'
-        elif self.combobox_distance_trans_mode.currentIndex() == 2:
-            self.distance_trans_mode = 'EUCLIDEAN'
-        self._update_morph_funs_image()
 
     def slot_radiobutton_distance_trans(self):
         self.morph_funs_flag = 0
@@ -641,6 +666,19 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self._update_morph_funs_widget_enabled()
         self._update_morph_funs_image()
 
+    def slot_combobox_distance_trans_mode(self):
+        if self.combobox_distance_trans_mode.currentIndex() == 0:
+            self.distance_trans_mode = 'CHESSBOARD'
+        elif self.combobox_distance_trans_mode.currentIndex() == 1:
+            self.distance_trans_mode = 'CITYBLOCK'
+        elif self.combobox_distance_trans_mode.currentIndex() == 2:
+            self.distance_trans_mode = 'EUCLIDEAN'
+        self._update_morph_funs_image()
+
+    def slot_checkbox_animation(self):
+        self.morph_funs_is_show_animation = self.checkbox_animation.isChecked()
+        self._update_morph_funs_image()
+
     def slot_combobox_edge_detection(self):
         if self.combobox_edge_detection.currentIndex() == 0:
             self.morph_funs_edge_detection_mode = 'STANDARD'
@@ -650,12 +688,45 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
             self.morph_funs_edge_detection_mode = 'INTERNAL'
         self._update_morph_funs_image()
 
+    def slot_combobox_morph_reconstrction(self):
+        if self.combobox_morph_reconstrction.currentIndex() == 0:
+            self.morph_funs_ocbr_mode = 'OBR'
+        elif self.combobox_morph_reconstrction.currentIndex() == 1:
+            self.morph_funs_ocbr_mode = 'CBR'
+        self._update_morph_funs_image()
+
     def slot_combobox_gradient(self):
         if self.combobox_gradient.currentIndex() == 0:
             self.morph_funs_gradient_mode = 'EXTERNAL'
         elif self.combobox_gradient.currentIndex() == 1:
             self.morph_funs_gradient_mode = 'INTERNAL'
         self._update_morph_funs_image()
+
+    def slot_combobox_marker_shape(self):
+        if self.combobox_marker_shape.currentIndex() == 0:
+            self.graphics_view_marker.marker_shape_type = 'DISK'
+        if self.combobox_marker_shape.currentIndex() == 1:
+            self.graphics_view_marker.marker_shape_type = 'V_LINE'
+        if self.combobox_marker_shape.currentIndex() == 2:
+            self.graphics_view_marker.marker_shape_type = 'H_LINE'
+
+    def slot_pushbutton_set_marker(self):
+        self.graphics_view_marker.is_setting_marker = True
+        self.pushbutton_cancel_set_marker.setEnabled(True)
+        self.pushbutton_set_marker.setEnabled(False)
+        self.combobox_marker_shape.setEnabled(False)
+        self.graphics_view_marker.setCursor(qc.Qt.CrossCursor)
+
+    def slot_pushbutton_cancel_set_marker(self):
+        self.graphics_view_marker.is_setting_marker = False
+        self.pushbutton_cancel_set_marker.setEnabled(False)
+        self.pushbutton_set_marker.setEnabled(True)
+        self.combobox_marker_shape.setEnabled(True)
+        self.graphics_view_marker.setCursor(qc.Qt.ArrowCursor)
+
+    def slot_morph_funs_pressed_signal(self):
+        self._update_morph_funs_image()
+        self.slot_pushbutton_cancel_set_marker()
     # endregion
 
     #######################
@@ -818,7 +889,6 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         else:
             self.table_se_click_mode = 'USER_DEFINED_SE'
             # self.se_origin = Config.DEFAULT_SE_ORIGIN
-            print((self.morph_oper_se_height, self.morph_oper_se_width))
             self.forcalc_se = np.ones((self.morph_oper_se_height, self.morph_oper_se_width))
             self.forcalc_se = MorphOperAlgo.CheckSE(self.forcalc_se)
             self.table_se.setEnabled(True)
@@ -828,22 +898,29 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         if self.morph_funs_flag == 0:
             self.morph_funs_image = MorphFunsAlgo.DistanceTrans(self.morph_funs_source_image, self.distance_trans_mode)
         elif self.morph_funs_flag == 1:
-            self.morph_funs_image, self.morph_funs_SiF = MorphFunsAlgo.Skeleton(self.morph_funs_source_image)
+            self.morph_funs_image, self.morph_funs_SiF = MorphFunsAlgo.Skeleton(self.morph_funs_source_image,
+                                                                                is_show_animation=self.morph_funs_is_show_animation)
         elif self.morph_funs_flag == 2:
-            self.morph_funs_image = MorphFunsAlgo.SkeletonReconstrctution(self.morph_funs_SiF, self.morph_funs_source_image.shape)
+            self.morph_funs_image = MorphFunsAlgo.SkeletonReconstrctution(self.morph_funs_SiF,
+                                                                          self.morph_funs_source_image.shape)
+                                                                          # is_show_animation=self.morph_funs_is_show_animation)
         elif self.morph_funs_flag == 3:
-            self.morph_funs_image = MorphFunsAlgo.EdgeDetection(self.morph_funs_source_image, mode = self.morph_funs_edge_detection_mode)
+            self.morph_funs_image = MorphFunsAlgo.EdgeDetection(self.morph_funs_source_image,
+                                                                mode = self.morph_funs_edge_detection_mode)
         elif self.morph_funs_flag == 4:
-            self.morph_funs_image = np.copy(self.morph_funs_source_image)
+            if self.image_type == 'BW':
+                self.morph_funs_image = MorphFunsAlgo.ConditionalDilation(self.morph_funs_source_image,
+                                                                          self.graphics_view_marker.morph_funs_marker)
+                                                                          # is_show_animation=self.morph_funs_is_show_animation)
+            elif self.image_type == 'GRAY':
+                self.morph_funs_image = MorphFunsAlgo.OCBR(self.morph_funs_source_image,
+                                                           mode = self.morph_funs_ocbr_mode)
+                                                           # is_show_animation=self.morph_funs_is_show_animation)
         elif self.morph_funs_flag == 5:
             self.morph_funs_image = MorphFunsAlgo.Gradient(self.morph_funs_source_image, mode = self.morph_funs_gradient_mode)
         self.qitem_morph_funs_image, qscene_morph_funs_image = Utils.show_on_graphview(self.morph_funs_image)
         self.graphics_view_morph_funs_image.setScene(qscene_morph_funs_image)
         self.graphics_view_morph_funs_image.fitInView(self.qitem_morph_funs_image, qc.Qt.KeepAspectRatio)
-
-    def _update_morph_funs_marker(self):
-        moveX = self.graphics_view_marker.moveX
-
 
     def _update_morph_funs_widget_enabled(self):
         if self.image_type == 'GRAY':
@@ -856,6 +933,8 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
             self.radiobutton_edge_detection.setEnabled(False)
             self.radiobutton_morph_reconstruction.setEnabled(True)
             self.radiobutton_gradient.setEnabled(True)
+            self.combobox_marker_shape.setEnabled(False)
+            self.pushbutton_set_marker.setEnabled(False)
         elif self.image_type == 'BW':
             if self.morph_funs_flag not in self.morph_funs_bw_flags:
                 self.morph_funs_flag = 0
@@ -866,6 +945,14 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
             self.radiobutton_edge_detection.setEnabled(True)
             self.radiobutton_morph_reconstruction.setEnabled(True)
             self.radiobutton_gradient.setEnabled(False)
+            if self.morph_funs_flag == 4:
+                self.combobox_marker_shape.setEnabled(True)
+                self.pushbutton_set_marker.setEnabled(True)
+                self.graphics_view_marker.setEnabled(True)
+            else:
+                self.combobox_marker_shape.setEnabled(False)
+                self.pushbutton_set_marker.setEnabled(False)
+                self.graphics_view_marker.setEnabled(False)
 
         self.combobox_morph_reconstrction.clear()
         self.combobox_morph_reconstrction.addItems(Config.COMBOBOX_MORPH_RECONSTRUCTUTION_ITEMS[self.image_type])
@@ -965,6 +1052,12 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self._update_morph_oper_image()
 
     def _init_morph_funs_ui(self):
+        # assignment
+        self.graphics_view_marker.image_width = self.morph_funs_source_image.shape[1]
+        self.graphics_view_marker.image_height = self.morph_funs_source_image.shape[0]
+        self.graphics_view_marker.mask = self.morph_funs_source_image
+        self.graphics_view_marker.morph_funs_marker = np.zeros(self.morph_funs_source_image.shape)
+
         # set enable
         self.combobox_distance_trans_mode.setEnabled(True)
         self.groupbox_morph_funs_processing.setEnabled(True)
@@ -973,6 +1066,9 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self.qitem_morph_funs_source_image, qscene_morph_funs_source_image = Utils.show_on_graphview(self.morph_funs_source_image)
         self.graphics_view_source_image4.setScene(qscene_morph_funs_source_image)
         self.graphics_view_source_image4.fitInView(self.qitem_morph_funs_source_image, qc.Qt.KeepAspectRatio)
+
+        # # show empty marker
+        self._set_morph_funs_default_marker()
 
         # show
         self._update_morph_funs_widget_enabled()
@@ -1038,6 +1134,12 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self.filter_size = int(self.line_edit_filter_size.text())
         self.forshow_filter = np.ones((self.filter_size, self.filter_size))
 
+    def _set_morph_funs_default_marker(self):
+        self.graphics_view_marker.morph_funs_marker = Config.DEFAULT_IMAGE
+        self.graphics_view_marker.qitem_morph_funs_marker, qscene_morph_funs_marker = Utils.show_on_graphview(self.graphics_view_marker.morph_funs_marker)
+        self.graphics_view_marker.setScene(qscene_morph_funs_marker)
+        self.graphics_view_marker.fitInView(self.graphics_view_marker.qitem_morph_funs_marker, qc.Qt.IgnoreAspectRatio)
+
     def _fit_view(self):
         if self.qitem_threshold_source_image is not None:
             self.graphics_view_source_image.fitInView(self.qitem_threshold_source_image, qc.Qt.KeepAspectRatio)
@@ -1051,6 +1153,8 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         if self.qitem_morph_funs_source_image is not None:
             self.graphics_view_source_image4.fitInView(self.qitem_morph_funs_source_image, qc.Qt.KeepAspectRatio)
             self.graphics_view_morph_funs_image.fitInView(self.qitem_morph_funs_image, qc.Qt.KeepAspectRatio)
+        if self.graphics_view_marker.qitem_morph_funs_marker is not None:
+            self.graphics_view_marker.fitInView(self.graphics_view_marker.qitem_morph_funs_marker, qc.Qt.IgnoreAspectRatio)
 
 class SendToWindow(qw.QDialog, Ui_Dialog):
     def __init__(self):
