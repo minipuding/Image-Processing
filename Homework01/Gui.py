@@ -252,7 +252,13 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
             return False
 
     def slot_pushbutton_send_to(self):
+        """
+        slot function -- pushbutton -- send result image of current page to source image of other page
+        :return:
+        """
+        # build a window
         self.send_to_window = SendToWindow()
+        # response to the user action
         if self.send_to_window.exec() == qw.QDialog.Accepted:
             temp_tabwidget_current_index = self.tabWidget.currentIndex()
             self.tabWidget.setCurrentIndex(self.send_to_window.selected_tab)
@@ -538,6 +544,10 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self._update_filter_image()
 
     def slot_tabwidget_changed(self):
+        """
+        slot function -- event -- when window size changed, this function would be apply to make images fit view.
+        :return:
+        """
         if self.tabWidget.currentIndex() == 0 and self.line_edit_input_path.text() != '':
             self._fit_view()
         elif self.tabWidget.currentIndex() == 1 and self.line_edit_input_path2.text() != '':
@@ -555,19 +565,43 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
     #######################
     # region
     def slot_combobox_morph_oper(self):
+        """
+        slot function -- combobox -- apply specific morphological operator including:
+            - Dilation
+            - Erosion
+            - Opening
+            - Closing
+        :return: None
+        """
         self.morph_oper_type = self.combobox_morph_oper.currentIndex()
         self._update_morph_oper_image()
 
     def slot_combobox_se(self):
+        """
+        slot function -- combobox -- select specific structure element including:
+            - Rectangle SE
+            - Cross SE
+            - Ellipse SE
+            - User Defined
+        :return: None
+        """
         self.se_type = self.combobox_se.currentIndex()
         self._update_se()
         self._update_table_se()
         self._update_morph_oper_image()
 
     def slot_checkbox_show_diff(self):
+        """
+        slot function -- checkbox -- show difference between source image and result image.
+        :return: None
+        """
         self._update_morph_oper_image()
 
     def slot_checkbox_se_regular(self):
+        """
+        slot function -- checkbox -- if checked, the height and width of structure element would be the same.
+        :return: None
+        """
         if self.checkbox_se_regular.isChecked() == True:
             self.morph_oper_se_width = np.maximum(self.morph_oper_se_height, self.morph_oper_se_width)
             self.morph_oper_se_height = np.maximum(self.morph_oper_se_height, self.morph_oper_se_width)
@@ -575,6 +609,10 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
             self.slider_se_height.setValue(int((self.morph_oper_se_height - 1) / 2))
 
     def slot_slider_se_width(self):
+        """
+        slot function -- slider -- set structure element width
+        :return: None
+        """
         if self.checkbox_se_regular.isChecked() == False:
             self.morph_oper_se_width = self.slider_se_width.value() * 2 + 1
         else:
@@ -587,6 +625,10 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self._update_morph_oper_image()
 
     def slot_slider_se_height(self):
+        """
+        slot function -- slider -- set structure element height
+        :return: None
+        """
         if self.checkbox_se_regular.isChecked() == False:
             self.morph_oper_se_height = self.slider_se_height.value() * 2 + 1
         else:
@@ -599,6 +641,10 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self._update_morph_oper_image()
 
     def slot_pushbutton_set_origin(self):
+        """
+        slot function -- pushbutton -- set origin of structure element.
+        :return:
+        """
         self.pushbutton_set_origin.setEnabled(False)
         self.pushbutton_cancel_set_origin.setEnabled(True)
         self.frame_morph_oper_function_area.setEnabled(False)
@@ -608,6 +654,10 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self.table_se.setSelectionMode(qw.QAbstractItemView.SingleSelection)
 
     def slot_pushbutton_cancel_set_origin(self):
+        """
+        slot function -- pushbutton -- cancel set origin of structure element.
+        :return:
+        """
         self.pushbutton_set_origin.setEnabled(True)
         self.pushbutton_cancel_set_origin.setEnabled(False)
         self.frame_morph_oper_function_area.setEnabled(True)
@@ -621,6 +671,10 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self.table_se.setSelectionMode(qw.QAbstractItemView.ExtendedSelection)
 
     def slot_table_se(self):
+        """
+        slot function -- table -- if we are setting origin or defining structure element, the table would be changed.
+        :return: None
+        """
         if self.table_se_click_mode == 'SET_ORIGIN':
             self.se_origin = (self.table_se.selectedIndexes()[0].row(), self.table_se.selectedIndexes()[0].column())
             self.table_se.clearSelection()
@@ -643,7 +697,9 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
     # Morph Functions Slot Functions
     #######################
     # region
-
+    """
+    slot function -- radiobuttons -- apply conresponding function and set UI enables.
+    """
     def slot_radiobutton_distance_trans(self):
         self.morph_funs_flag = 0
         self._update_morph_funs_widget_enabled()
@@ -670,6 +726,10 @@ class MainWindow(qw.QMainWindow, Ui_MainWindow):
         self._update_morph_funs_image()
 
     def slot_combobox_distance_trans_mode(self):
+        """
+
+        :return:
+        """
         if self.combobox_distance_trans_mode.currentIndex() == 0:
             self.distance_trans_mode = 'CHESSBOARD'
         elif self.combobox_distance_trans_mode.currentIndex() == 1:
