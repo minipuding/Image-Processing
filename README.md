@@ -18,11 +18,11 @@ A simple image processing app (emm..., it is also a homework...). There are four
 
 - send to other pages
 
-> ![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-35-07-image.png)
+> ![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-35-07-image.png)
 
 ### 1. Threshold Page
 
-![2022-05-05-14-14-12-image.png](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-14-12-image.png)
+![2022-05-05-14-14-12-image.png](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-14-12-image.png)
 
 - show threshold image
 
@@ -34,11 +34,11 @@ A simple image processing app (emm..., it is also a homework...). There are four
 
 ### 2. Filters Page
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-15-05-41-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-15-05-41-image.png)
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-36-26-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-36-26-image.png)
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-15-07-00-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-15-07-00-image.png)
 
 - apply roberts operation and show them
 
@@ -56,9 +56,9 @@ A simple image processing app (emm..., it is also a homework...). There are four
 
 ### 3. Morphological Operations Page
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-48-48-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-48-48-image.png)
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-50-12-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-50-12-image.png)
 
 - apply dilation operation
 
@@ -78,17 +78,17 @@ A simple image processing app (emm..., it is also a homework...). There are four
 
 ### 4. Motphological Functions Page
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-51-36-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-51-36-image.png)
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-52-08-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-52-08-image.png)
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-52-31-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-52-31-image.png)
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-53-13-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-53-13-image.png)
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-54-39-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-54-39-image.png)
 
-![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images\2022-05-05-14-55-10-image.png)
+![](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-55-10-image.png)
 
 - apply distance transform with chess coard, city block and Euclidian
 
