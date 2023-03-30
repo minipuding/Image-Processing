@@ -18,11 +18,11 @@ A simple image processing app (emm..., it is also a homework...). There are four
 
 - send to other pages
 
-> !['send to' windows](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-35-07-image.png)
+> !['send to' windows](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-35-07-image.png)
 
 ### 1. Threshold Page
 
-![threshold image](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-14-12-image.png)
+![threshold image](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-14-12-image.png)
 
 - show threshold image
 
