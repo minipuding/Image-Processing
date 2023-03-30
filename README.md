@@ -34,11 +34,11 @@ A simple image processing app (emm..., it is also a homework...). There are four
 
 ### 2. Filters Page
 
-![sobel operation](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-15-05-41-image.png)
+![sobel operation](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-15-05-41-image.png)
 
-![gaussian filter](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-36-26-image.png)
+![gaussian filter](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-36-26-image.png)
 
-![user-defined filter](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-15-07-00-image.png)
+![user-defined filter](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-15-07-00-image.png)
 
 - apply roberts operation and show them
 
@@ -56,9 +56,9 @@ A simple image processing app (emm..., it is also a homework...). There are four
 
 ### 3. Morphological Operations Page
 
-![dilation of binary image](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-48-48-image.png)
+![dilation of binary image](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-48-48-image.png)
 
-![closing of grayscale image](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-50-12-image.png)
+![closing of grayscale image](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-50-12-image.png)
 
 - apply dilation operation
 
@@ -78,17 +78,17 @@ A simple image processing app (emm..., it is also a homework...). There are four
 
 ### 4. Motphological Functions Page
 
-![distance transform](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-51-36-image.png)
+![distance transform](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-51-36-image.png)
 
-![skeleton extraction](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-52-08-image.png)
+![skeleton extraction](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-52-08-image.png)
 
-![edge detection](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-52-31-image.png)
+![edge detection](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-52-31-image.png)
 
-![conditional dilation](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-53-13-image.png)
+![conditional dilation](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-53-13-image.png)
 
-![OBR](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-54-39-image.png)
+![OBR](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-54-39-image.png)
 
-![gradient extraction](https://github.com/minipuding/Image-Processing/tree/main/Homework01/resource/images/2022-05-05-14-55-10-image.png)
+![gradient extraction](https://github.com/minipuding/Image-Processing/blob/main/Homework01/resource/images/2022-05-05-14-55-10-image.png)
 
 - apply distance transform with chess coard, city block and Euclidian
 
